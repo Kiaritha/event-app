@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+export default function EvApp() {
+    const [inputs, setInputs] = useState({});
+    const [evSetting, setEvSetting] = useState("Outdoor");
+
+    const handleChange = (event)=> {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values=> ({...values, [name] : value}))
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    }
+
+    const handleSelect = (event)=> {
+        setEvSetting (event.target.value)
+    }
+
+return(
+    <div className="Ev-app">
+  <form onSubmit={handleSubmit}>
+    <label>
+        Enter you name:
+        <input type="text" name="userName" 
+        value={inputs.userName || ""} 
+        onChange={handleChange}
+        />
+    </label>
+    <br></br>
+    <br></br>
+    <label>
+        Type of event:
+        <input type="text" name="type"
+        value={inputs.type || ""}
+        onChange={handleChange}
+        />
+    </label>
+    <br></br>
+    <br></br>
+    <label>
+        Theme colours:
+        <input type="text" name="colours"
+        value={inputs.colours || ""}
+        onChange={handleChange}
+        />
+    </label>
+    <br></br>
+    <br></br>
+    <label>
+        Where is your event going to be?
+    <select value = {evSetting} onChange={handleSelect}>
+        <option value = "Outdoor">Outdoor</option>
+        <option value = "Indoor">Indoor</option>
+    </select>
+    </label>
+  </form>
     </div>
-  );
+)
 }
 
-export default App;
