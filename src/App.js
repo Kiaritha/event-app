@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './Event.css'
 
 export default function EvApp() {
     const [inputs, setInputs] = useState({});
@@ -24,6 +25,20 @@ export default function EvApp() {
     }
 return(
     <div className="Ev-app">
+        <header>
+            <div className="Business-name">
+           <h1>Wakashi's Emporium</h1>
+            </div>
+        <div className="container">
+            <div className="content">
+              <div className="card"><img src="/eventapp-birthday.jpg" alt="Birthday" /></div>
+              <div className="card"><img src="/eventapp-gardenparty.jpg" alt="Garden party"/></div>
+              <div className="card"><img src="/eventapp-wedding.jpg" alt="Wedding"/></div>
+              <div className="card"><img src="/listening-party.jpg" alt="Listening party"/></div>
+            </div>
+        </div>
+    </header>
+
   <form onSubmit={handleSubmit}>
     <label>
         Enter you name:
