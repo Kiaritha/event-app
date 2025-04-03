@@ -50,6 +50,13 @@ return(
     <br></br>
     <br></br>
     <label>
+        Email:
+        <input type="email" name="userEmail" 
+        value={inputs.userEmail || ""} 
+        onChange={handleChange}
+        />
+    </label>
+    <label>
         Type of event:
         <input type="text" name="type"
         value={inputs.type || ""}
