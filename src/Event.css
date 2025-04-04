@@ -78,3 +78,11 @@ h1{
     color: ivory;
     margin: 20px;
 }
+.back-btn{
+	height: 30px;
+}
+.bk-ev{
+	height: 40px;
+	background-color: rgb(227, 145, 30);
+	font-weight: bold;
+}

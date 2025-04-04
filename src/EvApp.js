@@ -27,7 +27,7 @@ return(
             </div>
         </div>
     </header>
-  <button onClick={() => navigate("/book-event")}>Book your next event</button>
+  <button className="bk-ev" onClick={() => navigate("/book-event")}>Book your next event</button>
     </div>
 )
 }
