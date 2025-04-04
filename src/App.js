@@ -5,12 +5,27 @@ export default function EvApp() {
     const [inputs, setInputs] = useState({});
     const [evSetting, setEvSetting] = useState("Outdoor");
     const [textarea, setTextarea] = useState("");
+    const [imageFile, setImageFile] = useState({
+        image1: null,
+        image2: null,
+        image3:null
+    }
+    );
 
     const handleChange = (event)=> {
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values=> ({...values, [name] : value}))
     }
+    const handleDrop = (e, imageKey) => {
+        e.preventDefault();
+        const droppedFile = e.dataTransfer.files[0];
+        setImageFile((prev) => ({...prev, [imageKey]: droppedFile}));
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -27,19 +42,28 @@ return(
     <div className="Ev-app">
         <header>
             <div className="Business-name">
-           <h1>Wakashi's Emporium</h1>
+          <div className="h1"><h1>Wakashi's Emporium</h1></div> 
             </div>
         <div className="container">
             <div className="content">
-              <div className="card"><img src="/eventapp-birthday.jpg" alt="Birthday" /></div>
-              <div className="card"><img src="/eventapp-gardenparty.jpg" alt="Garden party"/></div>
-              <div className="card"><img src="/eventapp-wedding.jpg" alt="Wedding"/></div>
-              <div className="card"><img src="/listening-party.jpg" alt="Listening party"/></div>
+              <div className="card"><img src="/eventapp-birthday.jpg" alt="Birthday" />
+              <p>Birthday party</p>
+              </div>
+              <div className="card"><img src="/eventapp-gardenparty.jpg" alt="Garden party"/>
+              <p>Garden party</p>
+              </div>
+              <div className="card"><img src="/eventapp-wedding.jpg" alt="Wedding"/>
+              <p>Wedding</p>
+              </div>
+              <div className="card"><img src="/listening-party.jpg" alt="Listening party"/>
+              <p>Listening party</p>
+              </div>
             </div>
         </div>
     </header>
 
   <form onSubmit={handleSubmit}>
+    <h2>Book your next event</h2>
     <label>
         Enter you name:
         <input type="text" name="userName" 
@@ -87,6 +111,18 @@ return(
         <textarea value = {textarea} onChange={handleTextarea}></textarea>
     </label>
     <br></br>
+    <div className="img1" onDrop={(e)=> handleDrop(e, "image1")}>
+     {imageFile.image1 ? (
+        <div>
+            <p>{imageFile.image1.name}</p>
+            {imageFile.image1.type.startsWith('image') && 
+                (<img src={URL.createObjectURL(imageFile.image1)} alt="preview" className="img"
+                 />)
+            }
+        </div>
+       ) : (<p>Drag and drop image here</p>)
+    }
+    </div>
   </form>
     </div>
 )
