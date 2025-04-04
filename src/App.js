@@ -111,7 +111,7 @@ return(
         <textarea value = {textarea} onChange={handleTextarea}></textarea>
     </label>
     <br></br>
-    <div className="img1" onDrop={(e)=> handleDrop(e, "image1")}>
+    <div className="img1" onDrop={(e)=> handleDrop(e, "image1")} onDragOver={handleDragOver}>
      {imageFile.image1 ? (
         <div>
             <p>{imageFile.image1.name}</p>
