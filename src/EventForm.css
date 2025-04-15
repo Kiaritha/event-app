@@ -33,3 +33,6 @@ h2{
     background-position: relative;
     width: 500px;
 }
+.drag-and-drop{
+    display: flex;
+}

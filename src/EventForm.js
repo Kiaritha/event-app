@@ -6,6 +6,12 @@ export default function EventForm() {
     const [inputs, setInputs] = useState({});
     const [evSetting, setEvSetting] = useState("Outdoor");
     const [textarea, setTextarea] = useState("");
+    const [imageFile, setImageFile] = useState({
+        image1:null,
+        image2:null,
+        image3:null
+        });
+      
     const navigate = useNavigate();
 
     const handleChange = (event) => {
@@ -16,6 +22,16 @@ export default function EventForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
         alert("Form Submitted!");
+    };
+
+    const handleDrop = (e, imageKey) => {
+        e.preventDefault();
+        const droppedFile = e.dataTransfer.files[0];
+        setImageFile((prev) => ({ ...prev, [imageKey]: droppedFile }));
+      };
+  
+    const handleDragOver = (e) => {
+      e.preventDefault();
     };
 
     return (
@@ -65,6 +81,101 @@ export default function EventForm() {
                 <br />
 
                 <button className="submit" type="submit">Submit</button>
+                <p>Insert your pinterest inspiration pictures here</p>
+                <div className="drag-and-drop">
+                <div
+          style={{
+            border: '2px dashed black',
+            width: '100px',
+            height: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'orange',
+            margin: '20px',
+          }}
+          onDrop={(e)=>handleDrop(e, "image1")}
+          onDragOver={handleDragOver}
+        >
+          {imageFile.image1 ? (
+            <div>
+                
+              <p>✓</p>
+              {imageFile.image1.type.startsWith('image') && (
+                <img
+                  src={URL.createObjectURL(imageFile.image1)}
+                  alt="preview"
+                  style={{ width: '90px', height: '55px', marginTop: '2px' }}
+                />
+              )}
+            </div>
+          ) : (
+            <p>+</p>
+          )}
+        </div>
+        <div
+          style={{
+            border: '2px dashed black',
+            width: '100px',
+            height: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'orange',
+            margin: '20px',
+          }}
+          onDrop={(e)=>handleDrop(e, "image1")}
+          onDragOver={handleDragOver}
+        >
+          {imageFile.image2 ? (
+            <div>
+                
+              <p></p>
+              {imageFile.image1.type.startsWith('image') && (
+                <img
+                  src={URL.createObjectURL(imageFile.image2)}
+                  alt="preview"
+                  style={{ width: '35%', height: '35%', marginTop: '10px' }}
+                />
+              )}
+            </div>
+          ) : (
+            <p>+</p>
+          )}
+        </div>
+
+        <div
+          style={{
+            border: '2px dashed black',
+            width: '100px',
+            height: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'orange',
+            margin: '20px',
+          }}
+          onDrop={(e)=>handleDrop(e, "image1")}
+          onDragOver={handleDragOver}
+        >
+          {imageFile.image3 ? (
+            <div>
+                
+              <p>{imageFile.image3.name}</p>
+              {imageFile.image3.type.startsWith('image') && (
+                <img
+                  src={URL.createObjectURL(imageFile.image3)}
+                  alt="preview"
+                  style={{ width: '35%', height: '35%', marginTop: '10px' }}
+                />
+              )}
+            </div>
+          ) : (
+            <p>+</p>
+          )}
+        </div>
+        </div>
+
             </form>
 
             <button className="back-btn" onClick={() => navigate("/")}>
