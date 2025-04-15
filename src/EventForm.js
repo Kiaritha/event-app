@@ -19,6 +19,9 @@ export default function EventForm() {
     };
 
     return (
+    
+             <div style={{ backgroundImage: `url('/backgroundevent.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
+
         <div className="event-form">
             <h2>Book Your Event</h2>
             <form onSubmit={handleSubmit}>
@@ -68,5 +71,8 @@ export default function EventForm() {
                 Back to Home
             </button>
         </div>
+        </div>
+      
+
     );
 }
