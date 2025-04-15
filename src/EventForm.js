@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './EventForm.css'
 
 export default function EventForm() {
     const [inputs, setInputs] = useState({});
@@ -60,7 +61,7 @@ export default function EventForm() {
                 </label>
                 <br />
 
-                <button type="submit">Submit</button>
+                <button className="submit" type="submit">Submit</button>
             </form>
 
             <button className="back-btn" onClick={() => navigate("/")}>
