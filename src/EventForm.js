@@ -11,6 +11,7 @@ export default function EventForm() {
         image2:null,
         image3:null
         });
+     const [people, setPeople] = useState(0);   
       
     const navigate = useNavigate();
 
@@ -58,6 +59,7 @@ export default function EventForm() {
                     <input type="text" name="type" value={inputs.type || ""} onChange={handleChange} />
                 </label>
                 <br />
+                <img src="/purple_flower.jpg" alt="purple-flower" className="purple-flower" />
 
                 <label>
                     Theme colours:
@@ -73,6 +75,39 @@ export default function EventForm() {
                     </select>
                 </label>
                 <br />
+                <img src="/mauve_flower.jpg" alt="mauve-flower" className="mauve-flower" />
+                <div style={{ position: 'relative', width: '300px', marginTop:"40px" }}>
+                <label>
+                    Number of people in your event: {people}
+                    <input type="range" 
+                    className ="pple" 
+                    name ="pple"
+                    min ="0"
+                    max ="1000"
+                    value={people} 
+                    onChange={(e) => setPeople(e.target.value)}/>
+      
+                </label>
+                <div
+                    style={{
+                      position: 'absolute',
+                      left: `${(people / 1000) * 100}%`,
+                      transform: 'translateX(-50%)',
+                      top: '-25px',
+                      background: '#eee',
+                      padding: '2px 6px',
+                      borderRadius: '4px',
+                      fontSize: '0.8rem',
+                      pointerEvents: 'none',
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+                      transition: 'left 0.2s ease-out'
+                     }}
+                     >
+                      {people}
+                 </div>
+                 </div>
+                <br />
+
 
                 <label>
                     Additional information:
@@ -175,12 +210,14 @@ export default function EventForm() {
           )}
         </div>
         </div>
+        
 
             </form>
 
             <button className="back-btn" onClick={() => navigate("/")}>
                 Back to Home
             </button>
+         
         </div>
         </div>
       

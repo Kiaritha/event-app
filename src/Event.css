@@ -40,7 +40,7 @@ h1{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: .10rem;
+	gap: .2rem;
 }
 .card{
 	width: 45%;
@@ -54,7 +54,7 @@ h1{
 	margin-left: -10%;
 }
 .card:hover ~ .card {
-	translate: 6rem;
+	translate: 2rem;
 	
 }
 .card:hover{
