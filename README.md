@@ -4,3 +4,5 @@ It uses JavaScript, some html and CSS for proper functioning and useability of t
 Tools such as State management are used to keep track of bookings.
 I will be using a local storage API for the testing of whether the app \can keep  log of the inputs that are entered.
  I have utilized tools such as useNavigate to make navigation easier and to create a cleaner code. 
+
+ After reviewing new react education materia, I decided to update from React 17 to react 18 and make the necessary changes for it to be compatible with vite.
