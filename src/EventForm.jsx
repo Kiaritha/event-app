@@ -34,7 +34,7 @@ export default function EventForm() {
 
   const handleDragOver = (e) => e.preventDefault();
 
-  // Function to render fields unique to each event
+
   const renderEventSpecificFields = () => {
     switch (eventType) {
       case "wedding":
@@ -59,6 +59,15 @@ export default function EventForm() {
                 <option value="Outdoor">Outdoor</option>
                 <option value="Indoor">Indoor</option>
               </select>
+            </label><br />
+            <label>
+              Venue:
+              <input
+                type="text"
+                name="venue"
+                value={inputs.venue || ""}
+                onChange={handleChange}
+              />
             </label>
           </>
         );
@@ -110,6 +119,35 @@ export default function EventForm() {
                 onChange={handleChange}
               />
             </label>
+            <label>
+              Prefered baker (Can be provided if none):
+              <input
+                type="text"
+                name="baker"
+                value={inputs.baker || ""}
+                onChange={handleChange}
+              />
+            </label><br />
+
+            <label>
+              Menu:
+              <input 
+              type="text"
+              name="foodOptions"
+              value={inputs.foodOptions}
+              onChange={handleChange}
+           />
+              </label>
+
+              <label>
+              Preferred caterer(can be provided):
+              <input 
+              type="text"
+              name="caterer"
+              value={inputs.caterer}
+              onChange={handleChange}
+           />
+              </label>
           </>
         );
 
@@ -137,6 +175,32 @@ export default function EventForm() {
             </label>
           </>
         );
+
+         case "babyShower":
+        return (
+          <>
+            <label>
+              Type of setup:
+              <input
+                type="text"
+                name="setupType"
+                value={inputs.setupType || ""}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Theme colours
+              <input
+                type="text"
+                name="themeColours"
+                value={inputs.themeColours || ""}
+                onChange={handleChange}
+              />
+            </label>
+          </>
+        );
+
 
       case "listening-party":
         return (
@@ -178,6 +242,7 @@ export default function EventForm() {
           Enter your name:
           <input
             type="text"
+            required
             name="userName"
             value={inputs.userName || ""}
             onChange={handleChange}
@@ -189,6 +254,7 @@ export default function EventForm() {
           Email:
           <input
             type="email"
+            required
             name="userEmail"
             value={inputs.userEmail || ""}
             onChange={handleChange}
@@ -200,6 +266,7 @@ export default function EventForm() {
           Event date:
           <input
             type="date"
+            required
             name="date"
             value={inputs.date || ""}
             onChange={handleChange}
@@ -211,6 +278,7 @@ export default function EventForm() {
           Event location:
           <input
             type="text"
+            required
             name="location"
             value={inputs.location || ""}
             onChange={handleChange}
@@ -253,7 +321,8 @@ export default function EventForm() {
         <br />
 
         <label>
-          Additional information:
+          Additional information:(give as much detail as you can)
+          <br />
           <textarea
             value={textarea}
             onChange={(e) => setTextarea(e.target.value)}

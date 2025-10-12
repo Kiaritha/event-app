@@ -10,7 +10,7 @@ export default function EvApp() {
           <div className="h1"><h1>Wakashi's Emporium</h1></div> 
         </div><br></br><br></br><br></br>
         <div className="desc">
-<p> Wakashi's Emporium is dedicated to making all your events memorable. From personal evets to Corporate events,
+<p> Wakashi's Emporium is dedicated to making all your events memorable. From personal events to Corporate events,
   the mission remains the same: quality events. </p>
   <p>Click below on the event type that you want curated for you. Fill in the details of the form you will be directed to</p>
 </div>
@@ -36,6 +36,12 @@ export default function EvApp() {
               <img src="/listening-party.jpg" alt="Listening party" />
               <p>Listening party</p>
             </div>
+
+            <div className="card" onClick={() => navigate("/form/babyShower")}>
+              <img src="/babyShower.jpeg" alt="Listening party" />
+              <p>BabyShower</p>
+            </div>
+
 
             <div className="card" onClick={() => navigate("/form/corporate")}>
               <img src="/corp.jpeg" alt="Corporate events" />
