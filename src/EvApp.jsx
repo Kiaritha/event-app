@@ -12,7 +12,8 @@ export default function EvApp() {
         <div className="desc">
 <p> Wakashi's Emporium is dedicated to making all your events memorable. From personal events to Corporate events,
   the mission remains the same: quality events. </p>
-  <p>Click below on the event type that you want curated for you. Fill in the details of the form you will be directed to</p>
+  <p>Click below on the event type that you want curated for you. Fill in the details of the form you will be directed to.</p>
+  <p><b> - Note that corporate events must be booked at least two months in advance to allow for proper planning</b></p>
 </div>
 
         <div className="container">
