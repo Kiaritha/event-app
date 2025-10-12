@@ -8,7 +8,12 @@ export default function EvApp() {
       <header>
         <div className="Business-name">
           <div className="h1"><h1>Wakashi's Emporium</h1></div> 
-        </div>
+        </div><br></br><br></br><br></br>
+        <div className="desc">
+<p> Wakashi's Emporium is dedicated to making all your events memorable. From personal evets to Corporate events,
+  the mission remains the same: quality events. </p>
+  <p>Click below on the event type that you want curated for you. Fill in the details of the form you will be directed to</p>
+</div>
 
         <div className="container">
           <div className="content">
@@ -39,10 +44,6 @@ export default function EvApp() {
           </div>
         </div>
       </header>
-
-      <button className="bk-ev" onClick={() => navigate("/book-event")}>
-        Book your next event
-      </button>
     </div>
   );
 }

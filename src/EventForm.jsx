@@ -4,200 +4,308 @@ import "./EventForm.css";
 
 export default function EventForm() {
   const { eventType } = useParams();
+  const navigate = useNavigate();
+
   const [inputs, setInputs] = useState({});
   const [evSetting, setEvSetting] = useState("Outdoor");
   const [textarea, setTextarea] = useState("");
+  const [people, setPeople] = useState(0);
   const [imageFile, setImageFile] = useState({
     image1: null,
     image2: null,
     image3: null,
   });
-  const [people, setPeople] = useState(0);
 
-  const navigate = useNavigate();
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setInputs((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert("Form Submitted!");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Form for ${eventType.replace("-", " ")} submitted!`);
   };
 
-  const handleDrop = (e, imageKey) => {
+  const handleDrop = (e, key) => {
     e.preventDefault();
-    const droppedFile = e.dataTransfer.files[0];
-    setImageFile((prev) => ({ ...prev, [imageKey]: droppedFile }));
+    const file = e.dataTransfer.files[0];
+    setImageFile((prev) => ({ ...prev, [key]: file }));
   };
 
   const handleDragOver = (e) => e.preventDefault();
 
+  // Function to render fields unique to each event
+  const renderEventSpecificFields = () => {
+    switch (eventType) {
+      case "wedding":
+        return (
+          <>
+            <label>
+              Theme colours:
+              <input
+                type="text"
+                name="colours"
+                value={inputs.colours || ""}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Venue type:
+              <select
+                value={evSetting}
+                onChange={(e) => setEvSetting(e.target.value)}
+              >
+                <option value="Outdoor">Outdoor</option>
+                <option value="Indoor">Indoor</option>
+              </select>
+            </label>
+          </>
+        );
+
+      case "corporate":
+        return (
+          <>
+            <label>
+              Company name:
+              <input
+                type="text"
+                name="company"
+                value={inputs.company || ""}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Department or team:
+              <input
+                type="text"
+                name="department"
+                value={inputs.department || ""}
+                onChange={handleChange}
+              />
+            </label>
+          </>
+        );
+
+      case "birthday":
+        return (
+          <>
+            <label>
+              Celebrant’s age:
+              <input
+                type="number"
+                name="age"
+                value={inputs.age || ""}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Type of cake or theme:
+              <input
+                type="text"
+                name="cakeTheme"
+                value={inputs.cakeTheme || ""}
+                onChange={handleChange}
+              />
+            </label>
+          </>
+        );
+
+      case "garden-party":
+        return (
+          <>
+            <label>
+              Type of setup:
+              <input
+                type="text"
+                name="setupType"
+                value={inputs.setupType || ""}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Preferred music type:
+              <input
+                type="text"
+                name="musicType"
+                value={inputs.musicType || ""}
+                onChange={handleChange}
+              />
+            </label>
+          </>
+        );
+
+      case "listening-party":
+        return (
+          <>
+            <label>
+              Artist/Album Name:
+              <input
+                type="text"
+                name="album"
+                value={inputs.album || ""}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Genre:
+              <input
+                type="text"
+                name="genre"
+                value={inputs.genre || ""}
+                onChange={handleChange}
+              />
+            </label>
+          </>
+        );
+
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="form-container">
       <h2>Book a {eventType.replace("-", " ")}!</h2>
-      {eventType === "wedding" && (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Enter your name:
-            <input
-              type="text"
-              name="userName"
-              value={inputs.userName || ""}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
 
-          <label>
-            Email:
-            <input
-              type="email"
-              name="userEmail"
-              value={inputs.userEmail || ""}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-
-          <label>
-            Type of event:
-            <input
-              type="text"
-              name="type"
-              value={inputs.type || ""}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-
-          <img
-            src="/purple_flower.jpg"
-            alt="purple-flower"
-            className="purple-flower"
+      <form onSubmit={handleSubmit}>
+    
+        <label>
+          Enter your name:
+          <input
+            type="text"
+            name="userName"
+            value={inputs.userName || ""}
+            onChange={handleChange}
           />
+        </label>
+        <br />
 
+        <label>
+          Email:
+          <input
+            type="email"
+            name="userEmail"
+            value={inputs.userEmail || ""}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+
+        <label>
+          Event date:
+          <input
+            type="date"
+            name="date"
+            value={inputs.date || ""}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+
+        <label>
+          Event location:
+          <input
+            type="text"
+            name="location"
+            value={inputs.location || ""}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+
+        {renderEventSpecificFields()}
+        <br />
+
+        <div style={{ position: "relative", width: "300px", marginTop: "20px" }}>
           <label>
-            Theme colours:
+            Expected number of guests: {people}
             <input
-              type="text"
-              name="colours"
-              value={inputs.colours || ""}
-              onChange={handleChange}
+              type="range"
+              min="0"
+              max="1000"
+              value={people}
+              onChange={(e) => setPeople(e.target.value)}
             />
           </label>
-          <br />
+          <div
+            style={{
+              position: "absolute",
+              left: `${(people / 1000) * 100}%`,
+              transform: "translateX(-50%)",
+              top: "-25px",
+              background: "#eee",
+              padding: "2px 6px",
+              borderRadius: "4px",
+              fontSize: "0.8rem",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+              transition: "left 0.2s ease-out",
+            }}
+          >
+            {people}
+          </div>
+        </div>
 
-          <label>
-            Where is your event going to be?
-            <select
-              value={evSetting}
-              onChange={(e) => setEvSetting(e.target.value)}
-            >
-              <option value="Outdoor">Outdoor</option>
-              <option value="Indoor">Indoor</option>
-            </select>
-          </label>
-          <br />
+        <br />
 
-          <img
-            src="/mauve_flower.jpg"
-            alt="mauve-flower"
-            className="mauve-flower"
+        <label>
+          Additional information:
+          <textarea
+            value={textarea}
+            onChange={(e) => setTextarea(e.target.value)}
           />
+        </label>
+        <br />
 
-          {/* People slider */}
-          <div style={{ position: "relative", width: "300px", marginTop: "40px" }}>
-            <label>
-              Number of people in your event: {people}
-              <input
-                type="range"
-                className="pple"
-                name="pple"
-                min="0"
-                max="1000"
-                value={people}
-                onChange={(e) => setPeople(e.target.value)}
-              />
-            </label>
-
+        
+        <p>Insert your Pinterest inspiration pictures here</p>
+        <div className="drag-and-drop">
+          {["image1", "image2", "image3"].map((key) => (
             <div
+              key={key}
               style={{
-                position: "absolute",
-                left: `${(people / 1000) * 100}%`,
-                transform: "translateX(-50%)",
-                top: "-25px",
-                background: "#eee",
-                padding: "2px 6px",
-                borderRadius: "4px",
-                fontSize: "0.8rem",
-                pointerEvents: "none",
-                boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-                transition: "left 0.2s ease-out",
+                border: "2px dashed black",
+                width: "100px",
+                height: "60px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "orange",
+                margin: "20px",
               }}
+              onDrop={(e) => handleDrop(e, key)}
+              onDragOver={handleDragOver}
             >
-              {people}
+              {imageFile[key] ? (
+                <div>
+                  <p>✓</p>
+                  {imageFile[key].type.startsWith("image") && (
+                    <img
+                      src={URL.createObjectURL(imageFile[key])}
+                      alt="preview"
+                      style={{
+                        width: "90px",
+                        height: "55px",
+                        marginTop: "2px",
+                      }}
+                    />
+                  )}
+                </div>
+              ) : (
+                <p>+</p>
+              )}
             </div>
-          </div>
-          <br />
+          ))}
+        </div>
 
-          <label>
-            Additional information:
-            <textarea
-              value={textarea}
-              onChange={(e) => setTextarea(e.target.value)}
-            />
-          </label>
-          <br />
-
-          <p>Insert your Pinterest inspiration pictures here</p>
-
-          {/* Drag and Drop Boxes */}
-          <div className="drag-and-drop">
-            {["image1", "image2", "image3"].map((key) => (
-              <div
-                key={key}
-                style={{
-                  border: "2px dashed black",
-                  width: "100px",
-                  height: "60px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "orange",
-                  margin: "20px",
-                }}
-                onDrop={(e) => handleDrop(e, key)}
-                onDragOver={handleDragOver}
-              >
-                {imageFile[key] ? (
-                  <div>
-                    <p>✓</p>
-                    {imageFile[key].type.startsWith("image") && (
-                      <img
-                        src={URL.createObjectURL(imageFile[key])}
-                        alt="preview"
-                        style={{
-                          width: "90px",
-                          height: "55px",
-                          marginTop: "2px",
-                        }}
-                      />
-                    )}
-                  </div>
-                ) : (
-                  <p>+</p>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <button className="submit" type="submit">
-            Submit
-          </button>
-        </form>
-      )}
+        <button className="submit" type="submit">
+          Submit
+        </button>
+      </form>
 
       <button className="back-btn" onClick={() => navigate("/")}>
         Back to Home
