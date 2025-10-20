@@ -273,6 +273,20 @@ export default function EventForm() {
           />
         </label>
         <br />
+        <br />
+
+         <label>
+          Event commencement  Time:
+          <input
+            type="time"
+            required
+            name="time"
+            value={inputs.time || ""}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+
 
         <label>
           Event location:
@@ -320,7 +334,81 @@ export default function EventForm() {
 
         <br />
 
+        <h3><u>Please use this section to tick off some of the items you may need for your event</u></h3>
         <label>
+            Check necessary items:
+            <br />
+            Flowers
+            <input
+            type="checkbox"
+            name="flowers"
+            value={inputs.flowers}
+            onChange={handleChange}
+               />
+        </label>
+                <br />
+        <label>
+          Balloons:
+          <input
+          type="checkbox"
+          name="Balloons"
+          value={inputs.balloons}
+          obChange={handleChange}
+          />
+        </label>
+                <br />
+        <label>
+          Tents:
+          <input
+          type="checkbox"
+          name="Tents"
+          value={inputs.Tents}
+          onChange={handleChange}
+          />
+        </label>
+                <br />
+        <label>
+          Sound and public address system:
+          <input
+          type="checkbox"
+          name="sound"
+          value={inputs.sound}
+          onChange={handleChange}
+          />
+        </label>
+                 <br />
+        <label>
+          Banners:
+          <input
+          type="checkbox"
+          name="banners"
+          value={inputs.banners}
+          onChange={handleChange}
+          />
+        </label>
+                 <br />
+        <label>
+          Drapes:
+          <input
+          type="checkbox"
+          name="drapes"
+          value={inputs.drapes}
+          onChange={handleChange}
+          />
+        </label>
+                <br />
+        <label>
+          Stands and backdrops:
+          <input
+          type="checkbox"
+          name="stands"
+          value={inputs.stands}
+          onChange={handleChange}
+          />
+        </label>
+               <br/>
+                    <br/>
+       <label>
           Additional information:(give as much detail as you can)
           <br />
           <textarea
@@ -328,6 +416,7 @@ export default function EventForm() {
             onChange={(e) => setTextarea(e.target.value)}
           />
         </label>
+  
         <br />
 
         

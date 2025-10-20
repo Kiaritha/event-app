@@ -64,3 +64,20 @@ h2{
     margin-bottom: 10px;
     
 }
+.form-container{
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: rgb(199, 162, 133);
+    background-position: center;
+    background-size: 150px auto; 
+    background-size: contain;
+    color: black;
+    font-weight: normal;
+    /*background-image: url("/eventapp-partybackground.jpg"); --fnd out why this is not working*/
+
+}
+
+h2,h3{
+    font-family: cursive;
+    font-style: italic;
+}
