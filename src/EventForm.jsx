@@ -21,9 +21,17 @@ export default function EventForm() {
     setInputs((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {//added a navigation to the handle submit
     e.preventDefault();
-    alert(`Form for ${eventType.replace("-", " ")} submitted!`);
+    const bookingData = {
+      eventType:eventType.replace("_", ""),
+      ...inputs,
+      evSetting,
+      textarea,
+      people,
+      imageFile,
+    };
+    navigate("/confirmation", {state:bookingData});//used this to pass booking data to the next page which is the Confirmation page 
   };
 
   const handleDrop = (e, key) => {
