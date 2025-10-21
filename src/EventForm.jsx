@@ -16,10 +16,13 @@ export default function EventForm() {
     image3: null,
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInputs((prev) => ({ ...prev, [name]: value }));
-  };
+ const handleChange = (e) => {
+  const { name, value, type, checked } = e.target;
+  setInputs((prev) => ({
+    ...prev,
+    [name]: type === "checkbox" ? checked : value,
+  }));
+};
 
   const handleSubmit = (e) => {//added a navigation to the handle submit
     e.preventDefault();
@@ -77,6 +80,16 @@ export default function EventForm() {
                 onChange={handleChange}
               />
             </label>
+              <br />
+            <label>
+              Budget:
+              <input 
+              type="number"
+              name="budget"
+              value={inputs.budget || ""}
+              onChange={handleChange}
+               />
+            </label>
           </>
         );
 
@@ -99,8 +112,18 @@ export default function EventForm() {
                 type="text"
                 name="department"
                 value={inputs.department || ""}
-                onChange={handleChange}
+                onChange={handleChange}  
               />
+            </label>
+            <br />
+            <label>
+              Budget:
+              <input 
+              type="number"
+              name="budget"
+              value={inputs.budget || ""}
+              onChange={handleChange}
+               />
             </label>
           </>
         );
@@ -156,6 +179,16 @@ export default function EventForm() {
               onChange={handleChange}
            />
               </label>
+              <br />
+            <label>
+              Budget:
+              <input 
+              type="number"
+              name="budget"
+              value={inputs.budget || ""}
+              onChange={handleChange}
+               />
+            </label>
           </>
         );
 
@@ -180,6 +213,16 @@ export default function EventForm() {
                 value={inputs.musicType || ""}
                 onChange={handleChange}
               />
+            </label>
+            <br />
+            <label>
+              Budget:
+              <input 
+              type="number"
+              name="budget"
+              value={inputs.budget || ""}
+              onChange={handleChange}
+               />
             </label>
           </>
         );
@@ -206,6 +249,16 @@ export default function EventForm() {
                 onChange={handleChange}
               />
             </label>
+            <br />
+            <label>
+              Budget:
+              <input 
+              type="number"
+              name="budget"
+              value={inputs.budget || ""}
+              onChange={handleChange}
+               />
+            </label>
           </>
         );
 
@@ -231,6 +284,16 @@ export default function EventForm() {
                 value={inputs.genre || ""}
                 onChange={handleChange}
               />
+            </label>
+            <br />
+            <label>
+              Budget:
+              <input 
+              type="number"
+              name="budget"
+              value={inputs.budget || ""}
+              onChange={handleChange}
+               />
             </label>
           </>
         );

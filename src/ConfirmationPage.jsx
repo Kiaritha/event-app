@@ -30,6 +30,13 @@ export default function ConfirmationPage() {
         <p><strong>Expected Guests:</strong> {booking.people}</p>
         {booking.evSetting && <p><strong>Venue Type:</strong> {booking.evSetting}</p>}
         {booking.textarea && <p><strong>Additional Info:</strong> {booking.textarea}</p>}
+        {booking.flowers && <p> Flowers needed</p>}
+          {booking.balloons && <p> Balloons included</p>}
+          {booking.tents && <p> Tents required</p>}
+          {booking.sound && <p> Sound system needed</p>}
+          {booking.banners && <p>Banners requested</p>}
+          {booking.drapes && <p>Drapes included</p>}
+          {booking.stands && <p>Stands and backdrops required</p>}
       </div>
 
       <button className="back-btn" onClick={() => navigate("/")}>

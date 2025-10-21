@@ -12,40 +12,40 @@ export default function EvApp() {
         <div className="desc">
 <p> Wakashi's Emporium is dedicated to making all your events memorable. From personal events to Corporate events,
   the mission remains the same: quality events. </p>
-  <p>Click below on the event type that you want curated for you. Fill in the details of the form you will be directed to.</p>
+ <p><strong>Click below on the event type that you want curated for you. Fill in the details of the form you will be directed to.</strong></p>
   <p><b> - Note that corporate events must be booked at least two months in advance to allow for proper planning</b></p>
 </div>
 
         <div className="container">
           <div className="content">
             <div className="card" onClick={() => navigate("/form/birthday")}>
-              <img src="/eventapp-birthday.jpg" alt="Birthday" />
+              <img src="/eventapp-birthday.jpg" alt="Birthday" loading="lazy"/>
               <p>Birthday party</p>
             </div>
 
             <div className="card" onClick={() => navigate("/form/garden-party")}>
-              <img src="/eventapp-gardenparty.jpg" alt="Garden party" />
+              <img src="/eventapp-gardenparty.jpg" alt="Garden party" loading="lazy" />
               <p>Garden party</p>
             </div>
 
             <div className="card" onClick={() => navigate("/form/wedding")}>
-              <img src="/eventapp-wedding.jpg" alt="Wedding" />
+              <img src="/eventapp-wedding.jpg" alt="Wedding" loading="lazy"/>
               <p>Wedding</p>
             </div>
 
             <div className="card" onClick={() => navigate("/form/listening-party")}>
-              <img src="/listening-party.jpg" alt="Listening party" />
+              <img src="/listening-party.jpg" alt="Listening party" loading="lazy" />
               <p>Listening party</p>
             </div>
 
             <div className="card" onClick={() => navigate("/form/babyShower")}>
-              <img src="/babyShower.jpeg" alt="Listening party" />
+              <img src="/babyShower.jpeg" alt="Listening party" loading="lazy" />
               <p>BabyShower</p>
             </div>
 
 
             <div className="card" onClick={() => navigate("/form/corporate")}>
-              <img src="/corp.jpeg" alt="Corporate events" />
+              <img src="/corp.jpeg" alt="Corporate events" loading="lazy" />
               <p>Corporate events</p>
             </div>
           </div>
