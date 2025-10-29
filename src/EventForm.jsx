@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./EventForm.css";
 
@@ -16,6 +16,26 @@ export default function EventForm() {
     image3: null,
   });
 
+   useEffect(() => {
+    const savedBooking = localStorage.getItem("tempBooking");
+    if (savedBooking) {
+      const parsedData = JSON.parse(savedBooking);
+      setInputs(parsedData.inputs || {});
+      setEvSetting(parsedData.evSetting || "Outdoor");
+      setTextarea(parsedData.textarea || "");
+      setPeople(parsedData.people || 0);
+      console.log(" Loaded saved booking data:", parsedData);
+    } else {
+      console.log("No saved booking found — starting fresh.");
+    }
+  }, []);
+
+   useEffect(() => {
+    const bookingData = { inputs, evSetting, textarea, people };
+    localStorage.setItem("tempBooking", JSON.stringify(bookingData));
+    console.log(" Booking data saved to localStorage:", bookingData);
+  }, [inputs, evSetting, textarea, people]);
+
  const handleChange = (e) => {
   const { name, value, type, checked } = e.target;
   setInputs((prev) => ({
@@ -24,7 +44,7 @@ export default function EventForm() {
   }));
 };
 
-  const handleSubmit = (e) => {//added a navigation to the handle submit
+  const handleSubmit = (e) => {//added a navigation to the handle submit to add this in commit message
     e.preventDefault();
     const bookingData = {
       eventType:eventType.replace("_", ""),
@@ -34,7 +54,10 @@ export default function EventForm() {
       people,
       imageFile,
     };
-    navigate("/confirmation", {state:bookingData});//used this to pass booking data to the next page which is the Confirmation page 
+
+        localStorage.removeItem("tempBooking"); 
+        console.log("Booking confirmed and temporary data cleared:", bookingData);
+        navigate("/confirmation", { state: bookingData });
   };
 
   const handleDrop = (e, key) => {
@@ -407,13 +430,13 @@ export default function EventForm() {
 
         <h3><u>Please use this section to tick off some of the items you may need for your event</u></h3>
         <label>
-            Check necessary items:
+            Check necessary items: 
             <br />
             Flowers
             <input
             type="checkbox"
             name="flowers"
-            value={inputs.flowers}
+            checked={inputs.flowers}
             onChange={handleChange}
                />
         </label>
@@ -422,8 +445,8 @@ export default function EventForm() {
           Balloons:
           <input
           type="checkbox"
-          name="Balloons"
-          value={inputs.balloons}
+          name="Balloons"//changed value to checked noticed that I was keeping track of the changes wrongly 
+          checked={inputs.balloons}
           obChange={handleChange}
           />
         </label>
@@ -433,7 +456,7 @@ export default function EventForm() {
           <input
           type="checkbox"
           name="Tents"
-          value={inputs.Tents}
+          checked={inputs.Tents}
           onChange={handleChange}
           />
         </label>
@@ -443,7 +466,7 @@ export default function EventForm() {
           <input
           type="checkbox"
           name="sound"
-          value={inputs.sound}
+          checked={inputs.sound}
           onChange={handleChange}
           />
         </label>
@@ -453,7 +476,7 @@ export default function EventForm() {
           <input
           type="checkbox"
           name="banners"
-          value={inputs.banners}
+          checked={inputs.banners}
           onChange={handleChange}
           />
         </label>
@@ -463,7 +486,7 @@ export default function EventForm() {
           <input
           type="checkbox"
           name="drapes"
-          value={inputs.drapes}
+          checked={inputs.drapes}
           onChange={handleChange}
           />
         </label>
@@ -473,7 +496,7 @@ export default function EventForm() {
           <input
           type="checkbox"
           name="stands"
-          value={inputs.stands}
+          checked={inputs.stands}
           onChange={handleChange}
           />
         </label>
